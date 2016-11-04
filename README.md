@@ -2,6 +2,32 @@
 
 Replace i18n translation keys with their values during compilation using babel.
 
+## How it works
+
+```javascript
+// application code
+__t('greet.user', { name: user.name })
+
+// compile-time generated code
+translations.interpolate('Hello, %{name}', { name: user.name })
+
+// interpolation function to replace interpolation arguments at run-time
+const interpolate = (string, options) => {
+  if (!options) return string;
+
+  return Object.keys(options).reduce(
+    (result, key) => result.replace(`%{${key}}`, options[key]),
+    string
+  );
+};
+
+// run-time result
+'Hello, John'
+```
+
+Check out example in
+[webpack-integration example](examples/webpack-integration/).
+
 ## Installation
 
 ```sh
@@ -69,23 +95,3 @@ as those are provided in webpack config.
 as those are replaced with translated text compile-time.
 Interpolation (e.g. replacing `{name}` with current user name) should be performed run-time.
 This is achieved by replacing translation alias with an interpolation function:
-
-```javascript
-// application code
-__t('user.name', { name: user.name })
-
-// generated code
-translations.interpolate('user.name', { name: user.name })
-
-// interpolation function
-const interpolate = (string, options) => {
-  if (!options) return string;
-
-  return Object.keys(options).reduce(
-    (result, key) => result.replace(`%{${key}}`, options[key]),
-    string
-  );
-};
-
-// check out actual implementation in webpack-integration example
-```
