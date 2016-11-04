@@ -1,0 +1,4 @@
+{
+  "greet.person": "Howdy %{name}",
+  "greet.anonymous": "Howdy anonymous"
+}

@@ -13,7 +13,7 @@ module.exports = function ({ types: t }) {
           const key = keyNode.value;
           const value = state.opts.translations[key];
           if (!value) {
-            throw path.buildCodeFrameError('[i18n-translate] Translation not found for' + key);
+            throw path.buildCodeFrameError('[i18n-translate] Translation not found for ' + key);
           }
 
           path.replaceWith(
