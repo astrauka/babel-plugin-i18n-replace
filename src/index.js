@@ -1,7 +1,7 @@
 module.exports = function ({ types: t }) {
   return {
     visitor: {
-      Expression(path, state) {
+      CallExpression(path, state) {
         if (t.isIdentifier(path.node.callee, { name: state.opts.alias })) {
           const keyNode = path.node.arguments[0];
           if (!t.isStringLiteral(keyNode)) {
