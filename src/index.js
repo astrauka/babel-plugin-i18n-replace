@@ -1,3 +1,13 @@
+const translationByKey = (key, translations) => {
+  let value = translations[key];
+  if (value) return value;
+
+  return key.split('.').reduce(
+    (translationPath, currentKey) => translationPath[currentKey] || {},
+    translations
+  )
+}
+
 module.exports = function ({ types: t }) {
   return {
     visitor: {
@@ -11,7 +21,7 @@ module.exports = function ({ types: t }) {
           }
 
           const key = keyNode.value;
-          const value = state.opts.translations[key];
+          const value = translationByKey(key, state.opts.translations);
           if (!value) {
             throw path.buildCodeFrameError('[i18n-translate] Translation not found for ' + key);
           }

@@ -2,6 +2,8 @@
 
 Replace i18n translation keys with their values during compilation using babel.
 
+Supports flat and nested translation keys.
+
 ## How it works
 
 ```javascript
@@ -36,6 +38,8 @@ npm install --save-dev babel-plugin-i18n-replace
 ```
 
 ## Usage
+
+Checkout [tests](test/) for usage examples.
 
 ### Via webpack (Recommended)
 
@@ -89,8 +93,6 @@ If you want to read translations from file, use webpack configuration.
 
 - New translations are only picked up on webpack server start
 as those are provided in webpack config.
-
-- Translation keys nesting is not supported. It's easy to add though.
 
 - Translation keys have to be static strings,
 as those are replaced with translated text compile-time.
