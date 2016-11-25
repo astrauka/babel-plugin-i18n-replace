@@ -1,14 +1,12 @@
 {
   "name": "babel-plugin-i18n-replace",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Replace i18n translation keys with their values during compilation using babel",
   "repository": "astrauka/babel-plugin-i18n-replace",
   "license": "MIT",
   "main": "dist/index.js",
-  "dependencies": {
-    "babel-runtime": "^6.18.0"
-  },
   "devDependencies": {
+    "babel-runtime": "^6.18.0",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-plugin-transform-runtime": "^6.15.0",
