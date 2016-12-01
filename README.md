@@ -41,6 +41,13 @@ npm install --save-dev babel-plugin-i18n-replace
 
 Checkout [tests](test/) for usage examples.
 
+### Options
+
+* `alias (string)` - function name to match
+* `relpaceWith (string)` - function name to replace with
+* `returnKeyOnMissing (boolean)` - when translation key not found, use the key for value
+* `translations (object)` - translations map
+
 ### Via webpack (Recommended)
 
 Checkout [example application](examples/webpack-integration/).
@@ -56,6 +63,7 @@ require('babel').transform('code', {
       'i18n-replace', {
         alias: '__t',
         replaceWith: 'interpolate',
+        returnKeyOnMissing: false,
         translations: {
           'user.name': 'User is %{name}.',
           'user.surname': 'Surname'
@@ -77,6 +85,7 @@ require('babel').transform('code', {
       "i18n-replace", {
         "alias": "__t",
         "replaceWith": "interpolate",
+        "returnKeyOnMissing": false,
         "translations": {
           "user.name": "User is %{name}.",
           "user.surname": "Surname"

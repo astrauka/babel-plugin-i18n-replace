@@ -1,18 +1,23 @@
-const translationByKey = (key, translations) => {
-  let value = translations[key];
-  if (value) return value;
+const directTranslation = (key, translations) => translations[key];
 
-  return key.split('.').reduce(
+const nestedTranslation = (key, translations) =>
+  key.split('.').reduce(
     (translationPath, currentKey) => translationPath[currentKey] || {},
     translations
-  )
+  );
+
+const translationByKey = (key, translations, returnKeyOnMissing) => {
+  const value = directTranslation(key, translations) || nestedTranslation(key, translations);
+  if (typeof value === "string") return value;
+  return returnKeyOnMissing ? key : null;
 }
 
 module.exports = function ({ types: t }) {
   return {
     visitor: {
       CallExpression(path, state) {
-        if (t.isIdentifier(path.node.callee, { name: state.opts.alias })) {
+        const { alias, translations, returnKeyOnMissing } = state.opts;
+        if (t.isIdentifier(path.node.callee, { name: alias })) {
           const keyNode = path.node.arguments[0];
           if (!t.isStringLiteral(keyNode)) {
             throw path.buildCodeFrameError(
@@ -21,7 +26,7 @@ module.exports = function ({ types: t }) {
           }
 
           const key = keyNode.value;
-          const value = translationByKey(key, state.opts.translations);
+          const value = translationByKey(key, state.opts.translations, returnKeyOnMissing);
           if (!value) {
             throw path.buildCodeFrameError('[i18n-translate] Translation not found for ' + key);
           }
