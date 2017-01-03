@@ -4,7 +4,9 @@ module.exports = {
   translations: {
     user: {
       name: 'User is %{name}.',
-      surname: 'Surname',
+      nested: {
+        day: 11,
+      },
     },
   },
 }

@@ -46,6 +46,7 @@ Checkout [tests](test/) for usage examples.
 * `alias (string)` - function name to match
 * `relpaceWith (string)` - function name to replace with
 * `returnKeyOnMissing (boolean)` - when translation key not found, use the key for value
+* `allowStructures (boolean)` - allow numbers, hashes, etc instead of only strings as values - those will be converted to JSON strings
 * `translations (object)` - translations map
 
 ### Via webpack (Recommended)
@@ -106,4 +107,4 @@ as those are provided in webpack config.
 - Translation keys have to be static strings,
 as those are replaced with translated text compile-time.
 Interpolation (e.g. replacing `{name}` with current user name) should be performed run-time.
-This is achieved by replacing translation alias with an interpolation function:
+This is achieved by replacing translation alias with an interpolation function.
