@@ -5,5 +5,9 @@ module.exports = {
     configuration: {
       year: 2000,
     },
+    boolean: {
+      false: false,
+    },
+    null_value: null,
   },
 }

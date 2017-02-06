@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-i18n-replace",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Replace i18n translation keys with their values during compilation using babel",
   "repository": "astrauka/babel-plugin-i18n-replace",
   "license": "MIT",

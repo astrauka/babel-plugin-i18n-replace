@@ -7,9 +7,12 @@ const nestedTranslation = (key, translations) =>
   );
 
 const translationByKey = (key, translations, returnKeyOnMissing, allowStructures) => {
-  const value = directTranslation(key, translations) || nestedTranslation(key, translations);
+  const directValue = directTranslation(key, translations);
+  // allow null and false values
+  const value = directValue === undefined ? nestedTranslation(key, translations) : directValue;
+
   if (typeof value === "string") return value;
-  if (allowStructures && value) return JSON.stringify(value);
+  if (allowStructures && value !== undefined) return JSON.stringify(value);
   return returnKeyOnMissing ? key : null;
 }
 
