@@ -11,7 +11,10 @@ const translationByKey = (key, translations, returnKeyOnMissing, allowStructures
   // allow null and false values
   const value = directValue === undefined ? nestedTranslation(key, translations) : directValue;
 
-  if (typeof value === "string") return value;
+  if (typeof value === 'string') return value;
+  if (!allowStructures && typeof value === 'object') {
+    return 'pluralize_##_' + JSON.stringify(value);
+  }
   if (allowStructures && value !== undefined) return JSON.stringify(value);
   return returnKeyOnMissing ? key : null;
 }

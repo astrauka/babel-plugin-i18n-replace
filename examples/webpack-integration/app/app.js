@@ -11,6 +11,9 @@ var Greeting = React.createClass({
         <p>
           {__t("greet.anonymous")}
         </p>
+        <p>
+          {__t("likes", { count: 1, name: "Tom" })}
+        </p>
       </div>
     );
   },

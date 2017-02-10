@@ -99,6 +99,30 @@ require('babel').transform('code', {
 
 If you want to read translations from file, use webpack configuration.
 
+### Pluralization
+
+**Work with `allowStructures: false` only.**
+
+Imagine we have the following pluralization keys:
+```json
+{
+  "likes": {
+    "one": "%{name} has %{count} like.",
+    "other": "%{name} has %{count} likes."
+  }
+}
+```
+
+We can determine run-time only which of these translations should be used,
+so the plugin returns `pluralize_##_{json_pluralization_options}`.
+
+```javascript
+'pluralize_##_{"likes":{"one":"%{name} has %{count} like.","other":"%{name} has %{count} likes."}}'
+```
+
+Your interpolation function should handle this.
+See [example application](examples/webpack-integration/config/translations.js).
+
 ### Limitations
 
 - New translations are only picked up on webpack server start

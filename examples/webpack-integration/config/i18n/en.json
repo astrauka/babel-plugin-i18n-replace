@@ -1,4 +1,8 @@
 {
   "greet.person": "Howdy %{name}",
-  "greet.anonymous": "Howdy anonymous"
+  "greet.anonymous": "Howdy anonymous",
+  "likes": {
+    "one": "%{name} has %{count} like.",
+    "other": "%{name} has %{count} likes."
+  }
 }
