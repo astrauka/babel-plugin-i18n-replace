@@ -15,12 +15,19 @@ translations.interpolate('Hello, %{name}', { name: user.name })
 
 // interpolation function to replace interpolation arguments at run-time
 // you will have to define it and can skip it if no interpolation is required
-const interpolate = (string, options) => {
+
+// interpolates translation text at runtime
+export const interpolate = (string, options) => {
   if (!options) return string;
+
+  // support pluralization
+  const replacement = string.startsWith('pluralize_##_')
+    ? pluralize(JSON.parse(string.split('_##_')[1]), options.count)
+    : string;
 
   return Object.keys(options).reduce(
     (result, key) => result.replace(`%{${key}}`, options[key]),
-    string
+    replacement
   );
 };
 
