@@ -22,7 +22,7 @@
     "build": "babel src -d dist",
     "test": "node test",
     "watch": "node test --watch",
-    "prepublish": "npm test && npm run build",
+    "prepublish": "npm run build",
     "release": "np"
   },
   "keywords": [
